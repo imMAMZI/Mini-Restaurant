@@ -1,13 +1,13 @@
 #include "item.h"
 
-Item::Item(std::string &name, int &type, double &price) {
+Item::Item(std::string name, int type, double price) {
     this->name = name;
     this->type = type;
     this->price = price;
 }
 Item:: ~Item() {}
 
-bool Item:: changeItemPrice(double& newPrice) {
+bool Item:: changeItemPrice(double newPrice) {
     if (newPrice < 0 || newPrice > 20) {
         return false;
     }
