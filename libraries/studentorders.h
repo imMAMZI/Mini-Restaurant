@@ -3,10 +3,16 @@
 
 #include "order.h"
 
-// this is a linked list fir each student's orders
+// this is a linked list for each student's orders
 class StudentOrders {
 public:
     Order* head;
+
+    StudentOrders();
+    ~StudentOrders();
+
+    void addOrder(Order* newOrder);
+    void printOrderList();
 };
 
 #endif

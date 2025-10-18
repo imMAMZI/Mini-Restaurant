@@ -9,6 +9,10 @@ public:
     Order* head;
 
     OrdersList();
+    ~OrdersList();
+
+    void addOrder(Order* newOrder);
+    void printOrderList();
 };
 
 #endif
