@@ -16,6 +16,7 @@ private:
 public:
     static int orderNumber;
     Order* next;
+    Order* next_std;
 
     Order(std::string stdNum, std::string stdName, Item& stdItem);
     ~Order();
@@ -24,6 +25,7 @@ public:
     void printOrder();
     bool changeOrderStatus(int newStatus);
     bool deleteFromOrder(std::string itemName);
+    std::string getID();
 };
 
 #endif

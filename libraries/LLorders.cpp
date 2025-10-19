@@ -8,10 +8,10 @@ void OrdersList:: addOrder(Order* newOrder) {
         this->head = newOrder;
         newOrder->next = nullptr;
     } else {
-        this->head->next = newOrder;
-        newOrder->next = nullptr;
+        newOrder->next = this->head;
         this->head = newOrder;
     }
+    std::cout << "Order added successfully" << std::endl;
 }
 void OrdersList:: printOrderList() {
     Order* tmp = this->head;

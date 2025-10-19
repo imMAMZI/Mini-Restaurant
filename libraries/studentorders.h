@@ -1,18 +1,19 @@
 #ifndef STUDENTORDERS_H
 #define STUDENTORDERS_H
 
-#include "order.h"
+#include "individualOrders.h"
 
 // this is a linked list for each student's orders
 class StudentOrders {
 public:
-    Order* head;
+    IndividualOrders* head;
 
     StudentOrders();
     ~StudentOrders();
 
-    void addOrder(Order* newOrder);
-    void printOrderList();
+    void addStd(IndividualOrders* newStd);
+    void addtoStd(Item* newItem, std::string stdID);
+    bool stdisAvailable(std::string ID);
 };
 
 #endif

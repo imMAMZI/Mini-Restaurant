@@ -3,23 +3,34 @@
 StudentOrders::StudentOrders(): head(nullptr) {}
 StudentOrders:: ~StudentOrders() {}
 
-void StudentOrders:: addOrder(Order* newOrder) {
+void StudentOrders:: addStd(IndividualOrders* newStd) {
     // make sure that you make 2 instances of the given order :
     // one for the Orderlist linkedlist
     //  another for this linkedlist (do not use one instance)
     if (this->head == nullptr) {
-        this->head = newOrder;
-        newOrder->next = nullptr;
+        this->head = newStd;
+        newStd->next = nullptr;
     } else {
-        this->head->next = newOrder;
-        newOrder->next = nullptr;
-        this->head = newOrder;
+        newStd->next = this->head;
+        this->head = newStd;
+    }
+    std::cout << "Order added successfully" << std::endl;
+}
+void StudentOrders::addtoStd(Item* newItem, std::string stdID) {
+    IndividualOrders* tmp = this->head;
+    while (tmp != nullptr) {
+        if (tmp->getStdID() == stdID) {
+            tmp->addItem(newItem);
+        }
     }
 }
-void StudentOrders:: printOrderList() {
-    Order* tmp = this->head;
+bool StudentOrders::stdisAvailable(std::string ID) {
+    IndividualOrders* tmp = this->head;
     while (tmp != nullptr) {
-        tmp->printOrder();
+        if (tmp->getStdID() == ID) {
+            return true;
+        }
         tmp = tmp->next;
     }
+    return false;
 }
