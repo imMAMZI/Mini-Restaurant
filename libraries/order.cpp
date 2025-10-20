@@ -8,6 +8,7 @@ Order:: Order(std::string stdNum, std::string stdName, Item& stdItem): next(null
     this->orderStatus = false;
     this->items.push_back(stdItem);
     this->totalPrice = stdItem.getPrice();
+    this->thisOrderNumber = orderNumber;
 }
 Order:: ~Order() {}
 
@@ -62,5 +63,8 @@ bool Order:: deleteFromOrder(std::string itemName) {
 }
 std::string Order::getID() {
     return this->stdID;
+}
+bool Order::getOrderStatus() {
+    return this->orderStatus;
 }
 
