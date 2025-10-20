@@ -1,7 +1,7 @@
 #include "LLorders.h"
 
 OrdersList::OrdersList(): head(nullptr) {}
-OrdersList:: ~OrdersList() {}
+OrdersList:: ~OrdersList() = default;
 
 void OrdersList:: addOrder(Order* newOrder) {
     if (this->head == nullptr) {
@@ -11,7 +11,7 @@ void OrdersList:: addOrder(Order* newOrder) {
         newOrder->next = this->head;
         this->head = newOrder;
     }
-    std::cout << "Order added successfully" << std::endl;
+    std::cout << "Order Number " << newOrder->thisOrderNumber << " added successfully" << std::endl;
 }
 void OrdersList:: printOrderList() {
     Order* tmp = this->head;

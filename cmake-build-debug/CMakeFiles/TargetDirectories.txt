@@ -1,0 +1,3 @@
+/home/mamzi/Desktop/AP/Mini-Restaurant/cmake-build-debug/CMakeFiles/MiniRestaurant.dir
+/home/mamzi/Desktop/AP/Mini-Restaurant/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mamzi/Desktop/AP/Mini-Restaurant/cmake-build-debug/CMakeFiles/rebuild_cache.dir

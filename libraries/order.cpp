@@ -15,6 +15,7 @@ Order:: ~Order() {}
 bool Order:: addToOrder(Item& newOrder) {
     this->items.push_back(newOrder);
     this->totalPrice += newOrder.getPrice();
+    std::cout << termcolor::bright_green << "Added item to the order successfully" << termcolor::reset << std::endl;
     return true;
 }
 void Order:: printOrder() {
@@ -24,8 +25,21 @@ void Order:: printOrder() {
     << termcolor::bold << "Order Information : " << termcolor::reset << std::endl;
     for (int i = 0; i < this->items.size(); i++) {
         std::cout << "   " << termcolor::bright_blue << items.at(i).getName()
-        << "      " << termcolor::bright_red << items.at(i).getPrice() << termcolor::reset << std::endl;
+        << "   " << termcolor::bright_red << items.at(i).getPrice() << termcolor::reset << std::endl;
     }
+    std::cout << "Order number : " << this->thisOrderNumber << std::endl;
+    if (this->orderStatus == 0) {
+        std::cout << std::endl << termcolor::bright_grey << "Order status : " << termcolor::reset << termcolor::bold
+        << "Pending" << termcolor::reset << std::endl;
+    } else if (this->orderStatus == 1) {
+        std::cout << termcolor::bright_grey << std::endl << "Order status : " << termcolor::green << termcolor::bold
+        << "Received" << termcolor::reset << std::endl;
+    } else if (this->orderStatus == 2) {
+        std::cout << termcolor::bright_grey << std::endl << "Order status : " << termcolor::red << termcolor::bold
+        << "Canceled" << termcolor::reset << std::endl;
+    }
+    std::cout << termcolor::bright_grey << "Total Price : " << termcolor::red << termcolor::bold
+    << this->totalPrice << termcolor::reset << std::endl;
 }
 bool Order:: changeOrderStatus(int newStatus) {
     if (this->orderStatus == 2) {
@@ -51,8 +65,9 @@ bool Order:: deleteFromOrder(std::string itemName) {
     } else {
         for (int i = 0; i < this->items.size(); i++) {
             if (items.at(i).getName() == itemName) {
-                items.erase(items.begin() + i);
                 this->totalPrice -= this->items.at(i).getPrice();
+                items.erase(items.begin() + i);
+                std::cout << termcolor::bright_green << "Deleted the item from order successfully" << termcolor::reset << std::endl;
                 return true;
             }
         }
