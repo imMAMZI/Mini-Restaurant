@@ -10,8 +10,8 @@ class Order {
 private:
     std:: string stdID;
     std:: string stdName;
-    double totalPrice;
     int orderStatus; // 0: Pending - 1: Received - 2: Canceled
+    double totalPrice;
 public:
     int thisOrderNumber;
     std::vector<Item> items;
@@ -28,6 +28,7 @@ public:
     bool deleteFromOrder(std::string itemName);
     std::string getID();
     bool getOrderStatus();
+    std::string getStudentName();
 };
 
 #endif

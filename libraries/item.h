@@ -13,8 +13,9 @@ public:
     ~Item();
 
     bool changeItemPrice(double newPrice);
-    double getPrice();
-    std::string getName();
+    double getPrice() const;
+    std::string getName() const;
+    int getType() const;
 };
 
 #endif

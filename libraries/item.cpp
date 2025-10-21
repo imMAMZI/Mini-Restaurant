@@ -14,9 +14,12 @@ bool Item:: changeItemPrice(double newPrice) {
     this->price = newPrice;
     return true;
 }
-double Item:: getPrice() {
+double Item:: getPrice() const {
     return this->price;
 }
-std::string Item::getName() {
+std::string Item::getName() const {
     return this->name;
+}
+int Item::getType() const {
+    return this->type;
 }

@@ -1,9 +1,12 @@
 #include "LLorders.h"
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
-OrdersList::OrdersList(): head(nullptr) {}
-OrdersList:: ~OrdersList() = default;
+OrdersList::OrdersList() : head(nullptr) {}
+OrdersList::~OrdersList() = default;
 
-void OrdersList:: addOrder(Order* newOrder) {
+void OrdersList::addOrder(Order* newOrder) {
     if (this->head == nullptr) {
         this->head = newOrder;
         newOrder->next = nullptr;
@@ -13,7 +16,8 @@ void OrdersList:: addOrder(Order* newOrder) {
     }
     std::cout << "Order Number " << newOrder->thisOrderNumber << " added successfully" << std::endl;
 }
-void OrdersList:: printOrderList() {
+
+void OrdersList::printOrderList() {
     Order* tmp = this->head;
     while (tmp != nullptr) {
         tmp->printOrder();

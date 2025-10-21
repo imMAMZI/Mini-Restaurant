@@ -82,4 +82,7 @@ std::string Order::getID() {
 bool Order::getOrderStatus() {
     return this->orderStatus;
 }
+std::string Order::getStudentName() {
+    return this->stdName;
+}
 
