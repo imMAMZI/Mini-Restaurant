@@ -19,7 +19,7 @@ void OrdersList::addOrder(Order* newOrder) {
         this->head = newOrder;
         this->head->prev= nullptr;
     }
-    std::cout << "Order Number " << newOrder->thisOrderNumber << " added successfully" << std::endl;
+    std::cout << termcolor::bright_green << "Order Number " << newOrder->thisOrderNumber << " added successfully" << termcolor::reset << std::endl;
 }
 
 void OrdersList::printOrderList() {

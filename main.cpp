@@ -23,7 +23,7 @@ int main () {
 
     orderlist->readFromFile(stdorder);
 
-    std::cout << termcolor::bold << "Welcome to this restaurant!" << termcolor::bold << termcolor::green
+    std::cout << termcolor::bold << std::endl << "Welcome to this restaurant!" << termcolor::bold << termcolor::green
     << std::endl << "Where all the items are less than 20 dollars!!" << std::endl;
 
     std::cout << std::endl << termcolor::bold << termcolor::green << "Commands(type the number specified for each) : "
@@ -337,31 +337,31 @@ int main () {
                                     std::cin >> currentItemINT;
                                 }
                                 if (currentItemINT == 1) {
-                                    tmp->deleteFromOrder("Pizza");
+                                    tmp->deleteFromOrder("Pizza", true);
                                     status = true;
                                 } else if (currentItemINT == 2) {
-                                    tmp->deleteFromOrder("Burger");
+                                    tmp->deleteFromOrder("Burger", true);
                                     status = true;
                                 } else if (currentItemINT == 3) {
-                                    tmp->deleteFromOrder("Kabab");
+                                    tmp->deleteFromOrder("Kabab", true);
                                     status = true;
                                 } else if (currentItemINT == 4) {
-                                    tmp->deleteFromOrder("Coffee");
+                                    tmp->deleteFromOrder("Coffee", true);
                                     status = true;
                                 } else if (currentItemINT == 5) {
-                                    tmp->deleteFromOrder("Cola");
+                                    tmp->deleteFromOrder("Cola", true);
                                     status = true;
                                 } else if (currentItemINT == 6) {
-                                    tmp->deleteFromOrder("water");
+                                    tmp->deleteFromOrder("water", true);
                                     status = true;
                                 } else if (currentItemINT == 7) {
-                                    tmp->deleteFromOrder("Soup");
+                                    tmp->deleteFromOrder("Soup", true);
                                     status = true;
                                 } else if (currentItemINT == 8) {
-                                    tmp->deleteFromOrder("Jelly");
+                                    tmp->deleteFromOrder("Jelly", true);
                                     status = true;
                                 } else if (currentItemINT == 9) {
-                                    tmp->deleteFromOrder("FruitDish");
+                                    tmp->deleteFromOrder("FruitDish", true);
                                     status = true;
                                 }
                                 std::cout << std::endl;
@@ -413,16 +413,34 @@ int main () {
                 break;
             }
             case 6: {
-                std::cout << termcolor::bright_blue << termcolor::blue << "All orders information : " << termcolor::reset
-                << std::endl << std::endl;
-                Order* tmp = orderlist->tail;
-                while (tmp != nullptr) {
-                    tmp->printOrder();
-                    std::cout << termcolor::bright_red << "--------------------------" << termcolor::reset << std::endl;
-                    std::cout << std::endl;
-                    tmp = tmp->prev;
+                std::cout << "Commands : " << std::endl;
+                std::cout << "   1. Show all orders (by order number)" << std::endl;
+                std::cout << "   2. Show each student's order (separated by student number)" << std::endl;
+                std::cin >> currentCommand;
+                while (currentCommand < 1 || currentCommand > 2) {
+                    std::cout << termcolor::red << "Invalid command (Enter 1 or 2)" << termcolor::reset << std::endl;
+                    std::cin >> currentCommand;
                 }
-                break;
+                if (currentCommand == 1) {
+                    std::cout << termcolor::bright_blue << termcolor::blue << "All orders information : " << termcolor::reset
+                        << std::endl << std::endl;
+                    Order* tmp = orderlist->tail;
+                    while (tmp != nullptr) {
+                        tmp->printOrder();
+                        std::cout << termcolor::bright_red << "--------------------------" << termcolor::reset << std::endl;
+                        std::cout << std::endl;
+                        tmp = tmp->prev;
+                    }
+                    break;
+                } else if (currentCommand == 2) {
+                    IndividualOrders* tmp = stdorder->head;
+                    while (tmp != nullptr) {
+                        tmp->printStudentOrders();
+                        tmp = tmp->next;
+                    }
+                    std::cout << std::endl;
+                    break;
+                }
             }
             case 0: {
                 std::cout << termcolor::yellow << termcolor::bold << "Have a great day!" << termcolor::reset << std::endl;

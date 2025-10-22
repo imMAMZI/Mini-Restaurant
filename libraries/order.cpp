@@ -21,8 +21,8 @@ bool Order:: addToOrder(Item& newOrder) {
 }
 void Order:: printOrder() {
     std::cout << termcolor::bold << "Customer information : " << termcolor::reset << std::endl
-    << termcolor::bright_blue << "   Student ID : " << termcolor::reset << stdID << std::endl
-    << termcolor::bright_blue << "   Student Name : " << termcolor::reset << stdName << std::endl
+    << termcolor::bright_blue << "   Student 6ID : " << termcolor::reset << termcolor::bold << stdID << termcolor::reset << std::endl
+    << termcolor::bright_blue << "   Student Name : " << termcolor::reset << termcolor::bold << stdName << termcolor::reset << std::endl
     << termcolor::bold << "Order Information : " << termcolor::reset << std::endl;
     for (int i = 0; i < this->items.size(); i++) {
         std::cout << "   " << termcolor::bright_blue << items.at(i).getName()
@@ -54,12 +54,12 @@ bool Order:: changeOrderStatus(int newStatus) {
     this->orderStatus = newStatus;
     return true;
 }
-bool Order:: deleteFromOrder(std::string itemName) {
+bool Order:: deleteFromOrder(std::string itemName, bool status) {
     if (this->orderStatus != 0) {
         std::cout << termcolor::red << termcolor::bold << "Failed" << termcolor::reset << std::endl
         << termcolor::red << "Order already received or canceled" << termcolor::reset << std::endl;
         return false;
-    } else if (this->items.size() <= 1) {
+    } else if (this->items.size() <= 1 && !status) {
         std::cout << termcolor::red << termcolor::bold << "Failed" << termcolor::reset << std::endl
         << "Order will be empty after removing this item - Inaccessible" << termcolor::reset << std::endl;
         return false;

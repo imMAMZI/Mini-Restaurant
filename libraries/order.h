@@ -25,7 +25,7 @@ public:
     bool addToOrder(Item& newOrder);
     void printOrder();
     bool changeOrderStatus(int newStatus);
-    bool deleteFromOrder(std::string itemName);
+    bool deleteFromOrder(std::string itemName, bool status = false);
     std::string getID();
     int getOrderStatus();
     double getTotalPrice();

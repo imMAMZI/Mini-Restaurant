@@ -23,6 +23,7 @@ public:
 
     std::string getStdID();
     std::string getStdName();
+    void printStudentOrders();
 };
 
 #endif
