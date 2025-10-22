@@ -17,9 +17,9 @@ public:
     std::vector<Item> items;
     static int orderNumber;
     Order* next;
-    Order* next_std;
+    Order* prev;
 
-    Order(std::string stdNum, std::string stdName, Item& stdItem);
+    Order(std::string stdNum, std::string stdName, Item& stdItem, int status = 0);
     ~Order();
 
     bool addToOrder(Item& newOrder);
@@ -27,7 +27,8 @@ public:
     bool changeOrderStatus(int newStatus);
     bool deleteFromOrder(std::string itemName);
     std::string getID();
-    bool getOrderStatus();
+    int getOrderStatus();
+    double getTotalPrice();
     std::string getStudentName();
 };
 

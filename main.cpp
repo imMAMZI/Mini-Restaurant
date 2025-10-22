@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iostream>
+#include <limits>
 
 #include "libraries/menu.h"
 #include "libraries/order.h"
@@ -20,8 +21,10 @@ int main () {
     auto* stdorder = new StudentOrders();
     Menu* menu = new Menu();
 
+    orderlist->readFromFile(stdorder);
+
     std::cout << termcolor::bold << "Welcome to this restaurant!" << termcolor::bold << termcolor::green
-    << std::endl << "Where all the items are less than 20 dollars!!" << "\n\n";
+    << std::endl << "Where all the items are less than 20 dollars!!" << std::endl;
 
     std::cout << std::endl << termcolor::bold << termcolor::green << "Commands(type the number specified for each) : "
     << termcolor::reset << std::endl;
@@ -47,10 +50,16 @@ int main () {
                     std::cout << std::endl
                         << "Enter the student ID + Name + Item number you want(All at once like this : 40322943 Ali 1) : " << std::endl;
                     std::cin >> currentID >> currentName >> currentItemINT;
+                    if (std::cin.fail()) { // Handling wrong input format
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << termcolor::red << "Invalid input format. Try again." << termcolor::reset << std::endl;
+                        continue;
+                    }
                     if (!validateID(currentID)) {
-                        std::cout << termcolor::red << "Invalid student ID" << std::endl;
+                        std::cout << termcolor::red << "Invalid student ID" << termcolor::reset << std::endl;
                     } else if (!validateItem(currentItemINT)) {
-                        std::cout << termcolor::red << "Invalid Item number" << std::endl;
+                        std::cout << termcolor::red << "Invalid Item number" << termcolor::reset << std::endl;
                     }
                     else {
                         status = true;
@@ -406,17 +415,18 @@ int main () {
             case 6: {
                 std::cout << termcolor::bright_blue << termcolor::blue << "All orders information : " << termcolor::reset
                 << std::endl << std::endl;
-                Order* tmp = orderlist->head;
+                Order* tmp = orderlist->tail;
                 while (tmp != nullptr) {
                     tmp->printOrder();
                     std::cout << termcolor::bright_red << "--------------------------" << termcolor::reset << std::endl;
                     std::cout << std::endl;
-                    tmp = tmp->next;
+                    tmp = tmp->prev;
                 }
                 break;
             }
             case 0: {
                 std::cout << termcolor::yellow << termcolor::bold << "Have a great day!" << termcolor::reset << std::endl;
+                orderlist->writeIntoFile();
                 return 0;
             }
             default:
@@ -424,6 +434,7 @@ int main () {
                 break;
         }
     }
+    orderlist->writeIntoFile();
     return 0;
 }
 

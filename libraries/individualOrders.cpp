@@ -22,5 +22,3 @@ std::string IndividualOrders::getStdID() {
 std::string IndividualOrders::getStdName() {
     return stdName;
 }
-
-

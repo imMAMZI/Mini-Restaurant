@@ -1,7 +1,7 @@
 #include "order.h"
 #include "termcolor.hpp"
 
-Order:: Order(std::string stdNum, std::string stdName, Item& stdItem): next(nullptr), next_std(nullptr) {
+Order:: Order(std::string stdNum, std::string stdName, Item& stdItem, int status): next(nullptr), prev(nullptr) {
     this->orderNumber++;
     this->stdID = stdNum;
     this->stdName = stdName;
@@ -9,6 +9,7 @@ Order:: Order(std::string stdNum, std::string stdName, Item& stdItem): next(null
     this->items.push_back(stdItem);
     this->totalPrice = stdItem.getPrice();
     this->thisOrderNumber = orderNumber;
+    this->orderStatus = status;
 }
 Order:: ~Order() {}
 
@@ -79,8 +80,11 @@ bool Order:: deleteFromOrder(std::string itemName) {
 std::string Order::getID() {
     return this->stdID;
 }
-bool Order::getOrderStatus() {
+int Order::getOrderStatus() {
     return this->orderStatus;
+}
+double Order:: getTotalPrice() {
+    return this->totalPrice;
 }
 std::string Order::getStudentName() {
     return this->stdName;
